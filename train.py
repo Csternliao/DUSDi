@@ -125,6 +125,8 @@ class Workspace:
                 cfg.snapshot_ts = 100000
             elif domain == "moma2d":
                 cfg.agent.skill_dim = 125
+            elif domain == "metaworld":
+                cfg.agent.skill_dim = cfg.agent.training_params[domain].skill_dim
             else:
                 raise NotImplementedError
 
