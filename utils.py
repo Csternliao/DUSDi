@@ -323,6 +323,8 @@ def update_partition_config(cfg):
     import agent.partition_utils
     agent.partition_utils.SIMP_PAR = cfg.env_config.particle.simplify_action_space
     agent.partition_utils.USE_IMG = cfg.env_config.particle.use_img
+    if hasattr(cfg.env_config, "metaworld"):
+        agent.partition_utils.METAWORLD_CFG = cfg.env_config.metaworld
 
 def make_agent(obs_type, obs_spec, action_spec, num_expl_steps, parent_cfg, cfg):
     cfg.obs_type = obs_type
