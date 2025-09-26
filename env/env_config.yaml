@@ -15,3 +15,14 @@ particle:
 igibson:
   fullbox: true  # whether to use x & y of the box for classification
   sep_obj: false  # whether to separate objects
+
+metaworld:
+  suite: ML1
+  task: reach-v2
+  mode: train
+  ds_mode: test
+  episode_length: 200
+  randomize_task_on_reset: true
+  obs_keys: null
+  obs_clip: null
+  diayn_dim: null

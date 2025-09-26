@@ -35,7 +35,7 @@ update_ratio: 2 # how many env steps per update
 n_env: 4
 
 # task settings
-domain: particle # toy # igibson # moma2d # particle
+domain: particle # toy # igibson # moma2d # particle # metaworld
 
 exp_nm: ""
 
