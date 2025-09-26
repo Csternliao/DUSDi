@@ -1,5 +1,6 @@
 ## DUSDi: Disentangled Unsupervised Skill Discovery for Efficient Hierarchical Reinforcement Learning (NeurIPS 2024)
 This codebase was modified based on [URLB](https://github.com/rll-research/url_benchmark).
+It supports multiple domains, including toy, MoMa2D, Particle, iGibson, and MetaWorld.
 
 
 ## Requirements

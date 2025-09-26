@@ -109,6 +109,12 @@ def get_single_gym_env(cfg, rank=0):
             physics_timestep=physics_timestep,
         )
         env.seed(cfg.seed + rank)
+    elif cfg.domain == "metaworld":
+        from custom_env.metaworld_gym_env import create_metaworld_env_from_cfg
+
+        env = create_metaworld_env_from_cfg(cfg.env.metaworld,
+                                            seed=cfg.seed + rank,
+                                            mode=getattr(cfg.env.metaworld, "mode", "train"))
     else:
         raise NotImplementedError
 
@@ -235,6 +241,23 @@ def make_ds_envs(cfg, actor, device):
 
         return make_igibson_downstream_env
 
+    elif cfg.domain == "metaworld":
+        from custom_env.metaworld_gym_env import create_metaworld_env_from_cfg
+
+        low_level_step = getattr(cfg.agent, "update_skill_every_step",
+                                 cfg.agent.training_params[cfg.domain].update_skill_every_step)
+
+        def make_metaworld_ds_env(vis=False):
+            task_name = getattr(cfg, "ds_task", None) or cfg.env.metaworld.task
+            ds_mode = getattr(cfg.env.metaworld, "ds_mode", getattr(cfg.env.metaworld, "mode", "train"))
+            env = create_metaworld_env_from_cfg(cfg.env.metaworld,
+                                                task=task_name,
+                                                mode=ds_mode,
+                                                seed=cfg.seed)
+            env = wrap_ds_env(env, cfg, actor, device, low_level_step, vis)
+            return env
+
+        return make_metaworld_ds_env
     else:
         assert NotImplementedError
 

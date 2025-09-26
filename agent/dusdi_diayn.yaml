@@ -99,3 +99,12 @@ training_params:
         step_count_threshold: 10
         skill_dim: 5
         nstep: 1
+    metaworld:
+        sac: true
+        init_temperature: 0.1
+        update_skill_every_step: 50
+        use_spectral_norm: false
+        critic_type: mask_unwt
+        step_count_threshold: 10
+        skill_dim: 10
+        nstep: 1
